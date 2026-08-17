@@ -2,8 +2,8 @@
 
 export const WEDDING_DETAILS = {
   // Couple Names
-  groomName: "محمد",
-  brideName: "سهيلة",
+  groomName: "أحمد",
+  brideName: "أريج",
   coupleNames: "محمد وسهيلة",
 
   // Date & Time
@@ -19,8 +19,10 @@ export const WEDDING_DETAILS = {
   uberLocationUrl: "https://m.uber.com/ul/?action=setPickup&pickup=my_location",
 
   // Contact & RSVP
-  hostPhoneNumber: "+201234567890", // E.164 format for WhatsApp
-
+  phoneNumbers: {
+    groom: "+201025743812", // Replace with Groom's WhatsApp number
+    bride: "+201225479784", // Replace with Bride's WhatsApp number
+  },
   // Media
   audioFilePath: "/wedding.mp3",
 

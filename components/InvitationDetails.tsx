@@ -5,6 +5,56 @@ import { motion } from "framer-motion";
 import { WEDDING_DETAILS } from "@/app/_config/constants";
 
 export default function InvitationDetails() {
+  const [recipientType, setRecipientType] = useState<"groom" | "bride">(
+    "groom",
+  );
+  const [guestName, setGuestName] = useState("");
+  const [wishMessage, setWishMessage] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState("");
+
+  const handleSubmitWish = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!guestName.trim() || !wishMessage.trim()) {
+      setStatusMessage("يرجى إدخال الاسم والتهنئة.");
+      return;
+    }
+
+    setIsSubmitting(true);
+    setStatusMessage("جاري إرسال التهنئة...");
+
+    try {
+      const response = await fetch("/api/send-invite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          recipientType,
+          guestName,
+          wishMessage,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        const recipientName =
+          recipientType === "bride"
+            ? WEDDING_DETAILS.brideName
+            : WEDDING_DETAILS.groomName;
+        setStatusMessage(`تم إرسال تهنئتك إلى ${recipientName} بنجاح! 🤍`);
+        setGuestName("");
+        setWishMessage("");
+      } else {
+        setStatusMessage(`خطأ: ${data.error || "تعذر إرسال التهنئة"}`);
+      }
+    } catch (err) {
+      console.error(err);
+      setStatusMessage("حدث خطأ في الاتصال بالشبكة.");
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   const targetDate = new Date(WEDDING_DETAILS.weddingDateISO).getTime();
 
   const [timeLeft, setTimeLeft] = useState({
@@ -13,8 +63,6 @@ export default function InvitationDetails() {
     minutes: 0,
     seconds: 0,
   });
-  const [guestName, setGuestName] = useState("");
-  const [wishMessage, setWishMessage] = useState("");
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -179,32 +227,70 @@ export default function InvitationDetails() {
           اترك مباركة للعروسين
         </h2>
 
-        <form
-          className="space-y-4 text-right"
-          onSubmit={(e) => e.preventDefault()}
-        >
+        <form className="space-y-4 text-right" onSubmit={handleSubmitWish}>
+          {/* Recipient Selection Toggle */}
+          <div className="flex flex-col gap-2">
+            <label className="text-xs text-amber-400 font-medium">
+              إلى من ترغب بإرسال التهنئة؟
+            </label>
+            <div className="grid grid-cols-2 gap-3">
+              <button
+                type="button"
+                onClick={() => setRecipientType("groom")}
+                className={`py-2.5 px-4 rounded-xl text-xs font-semibold transition-all border ${
+                  recipientType === "groom"
+                    ? "bg-amber-500/20 border-amber-500 text-amber-300 shadow-md"
+                    : "bg-neutral-900 border-amber-500/10 text-neutral-400 hover:border-amber-500/30"
+                }`}
+              >
+                🤵 العريس ({WEDDING_DETAILS.groomName})
+              </button>
+
+              <button
+                type="button"
+                onClick={() => setRecipientType("bride")}
+                className={`py-2.5 px-4 rounded-xl text-xs font-semibold transition-all border ${
+                  recipientType === "bride"
+                    ? "bg-amber-500/20 border-amber-500 text-amber-300 shadow-md"
+                    : "bg-neutral-900 border-amber-500/10 text-neutral-400 hover:border-amber-500/30"
+                }`}
+              >
+                👰 العروس ({WEDDING_DETAILS.brideName})
+              </button>
+            </div>
+          </div>
+
           <input
             type="text"
             placeholder="اسمك الكريم..."
             value={guestName}
             onChange={(e) => setGuestName(e.target.value)}
             className="w-full bg-neutral-900 border border-amber-500/20 rounded-xl px-4 py-3 text-sm text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:border-amber-500/60"
+            required
           />
 
           <textarea
             rows={4}
-            placeholder="اكتب مباركتك الطيبة للعروسين..."
+            placeholder="اكتب مباركتك الطيبة..."
             value={wishMessage}
             onChange={(e) => setWishMessage(e.target.value)}
             className="w-full bg-neutral-900 border border-amber-500/20 rounded-xl px-4 py-3 text-sm text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:border-amber-500/60 resize-none"
+            required
           />
 
           <button
             type="submit"
-            className="w-full py-3 bg-amber-400 text-neutral-950 font-semibold rounded-full hover:bg-amber-300 transition-colors shadow-lg text-sm cursor-pointer"
+            disabled={isSubmitting}
+            className="w-full py-3 bg-amber-400 text-neutral-950 font-semibold rounded-full hover:bg-amber-300 transition-colors shadow-lg text-sm cursor-pointer disabled:opacity-50"
           >
-            إرسال التهنئة 💫
+            {isSubmitting ? "جاري الإرسال..." : "إرسال التهنئة 💫"}
           </button>
+
+          {statusMessage && (
+            <p className="text-xs text-center text-amber-300 mt-2">
+              {statusMessage}
+            </p>
+          )}
         </form>
       </motion.div>
     </div>
