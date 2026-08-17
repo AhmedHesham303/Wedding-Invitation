@@ -2,9 +2,9 @@
 "use client";
 
 import { useState } from "react";
-import EnvelopeHero from "@/components/EnvelopeHero";
 import InvitationDetails from "@/components/InvitationDetails";
 import AudioPlayer from "@/components/AudioPlayer";
+import EnvelopeHero from "@/components/EnvelopeHero";
 
 export default function Home() {
   const [opened, setOpened] = useState(false);

@@ -7,7 +7,7 @@ export const WEDDING_DETAILS = {
   coupleNames: "محمد وسهيلة",
 
   // Date & Time
-  weddingDateISO: "2026-08-07T20:00:00", // YYYY-MM-DDTHH:mm:ss format
+  weddingDateISO: "2026-09-11T06:00:00", // YYYY-MM-DDTHH:mm:ss format
   hijriDate: "٢٤ محرم ١٤٤٨ هـ",
   displayDateArabic: "يوم الجمعة 7 أغسطس 2026",
   displayTimeArabic: "الساعة 8:00 مساءً",
@@ -22,7 +22,7 @@ export const WEDDING_DETAILS = {
   hostPhoneNumber: "+201234567890", // E.164 format for WhatsApp
 
   // Media
-  audioFilePath: "/wedding-music.mp3",
+  audioFilePath: "/wedding.mp3",
 
   // Quran Verse / Invitation Text
   quranVerse:
