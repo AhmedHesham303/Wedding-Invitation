@@ -43,7 +43,7 @@ export default function EnvelopeHero({ onOpen }: { onOpen?: () => void }) {
         <p className="text-amber-300/70 mt-2 text-sm">
           اضغط على الختم لفتح الدعوة
         </p>
-        <p className="text-amber-300/70 mt-2 text-sm">متزعليش يا ماما</p>
+        {/* <p >متزعليش يا ماما</p> */}
       </motion.div>
 
       {/* Envelope Outer Container */}

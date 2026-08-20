@@ -101,7 +101,7 @@ export default function InvitationDetails() {
         className="w-full max-w-xl bg-neutral-950/90 border border-amber-500/20 rounded-2xl p-6 md:p-10 text-center shadow-2xl space-y-6"
       >
         <span className="text-amber-500 tracking-[0.25em] text-xs font-sans uppercase">
-          WEDDING INVITATION
+          دعوة عقد قران
         </span>
 
         <p className="text-amber-100 font-serif text-sm md:text-base leading-relaxed px-2">
