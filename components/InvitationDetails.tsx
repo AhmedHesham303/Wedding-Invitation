@@ -15,6 +15,7 @@ export default function InvitationDetails() {
 
   const handleSubmitWish = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!guestName.trim() || !wishMessage.trim()) {
       setStatusMessage("يرجى إدخال الاسم والتهنئة.");
       return;
@@ -41,7 +42,9 @@ export default function InvitationDetails() {
           recipientType === "bride"
             ? WEDDING_DETAILS.brideName
             : WEDDING_DETAILS.groomName;
+
         setStatusMessage(`تم إرسال تهنئتك إلى ${recipientName} بنجاح! 🤍`);
+
         setGuestName("");
         setWishMessage("");
       } else {
@@ -102,9 +105,9 @@ export default function InvitationDetails() {
         </p>
 
         <div className="flex items-center justify-center gap-3 text-amber-500/60 my-2">
-          <span className="h-[1px] w-12 bg-amber-500/30"></span>
+          <span className="h-[1px] w-12 bg-amber-500/30" />
           <span>◆</span>
-          <span className="h-[1px] w-12 bg-amber-500/30"></span>
+          <span className="h-[1px] w-12 bg-amber-500/30" />
         </div>
 
         <p className="text-neutral-300 text-sm leading-relaxed max-w-md mx-auto">
@@ -119,9 +122,9 @@ export default function InvitationDetails() {
         </h1>
 
         <div className="flex items-center justify-center gap-3 text-amber-500/60 my-2">
-          <span className="h-[1px] w-12 bg-amber-500/30"></span>
+          <span className="h-[1px] w-12 bg-amber-500/30" />
           <span>◆</span>
-          <span className="h-[1px] w-12 bg-amber-500/30"></span>
+          <span className="h-[1px] w-12 bg-amber-500/30" />
         </div>
 
         <p className="text-amber-400 font-medium text-sm md:text-base">
@@ -144,6 +147,7 @@ export default function InvitationDetails() {
               <span className="text-xl md:text-2xl font-semibold text-amber-400 font-mono">
                 {String(item.value).padStart(2, "0")}
               </span>
+
               <span className="text-xs text-neutral-400 mt-1">
                 {item.label}
               </span>
@@ -172,24 +176,41 @@ export default function InvitationDetails() {
           <p className="text-lg font-medium text-amber-300">
             📅 الموعد والتوقيت
           </p>
+
           <p className="text-neutral-300 text-sm">
             {WEDDING_DETAILS.displayDateArabic}
           </p>
+
           <p className="text-neutral-400 text-xs">
             {WEDDING_DETAILS.displayTimeArabic}
           </p>
         </div>
 
         {/* Venue Box */}
-        <div className="bg-neutral-900/60 border border-amber-500/20 rounded-xl p-5 text-center space-y-3">
-          <p className="text-lg font-medium text-amber-300">🏛️ مكان الاحتفال</p>
-          <p className="text-neutral-300 text-sm">
-            {WEDDING_DETAILS.venueName}
-          </p>
-          <p className="text-neutral-400 text-xs">
-            {WEDDING_DETAILS.venueAddress}
-          </p>
+        <div className="bg-neutral-900/60 border border-amber-500/20 rounded-xl p-5 text-center space-y-4">
+          <p className="text-lg font-medium text-amber-300">🕌 مكان الاحتفال</p>
 
+          {/* Masjid Image */}
+          <div className="overflow-hidden rounded-xl border border-amber-500/20">
+            <img
+              src="/public/masjed.webp"
+              alt={WEDDING_DETAILS.venueName}
+              className="w-full h-56 md:h-64 object-cover"
+            />
+          </div>
+
+          {/* Location */}
+          <div className="space-y-2">
+            <p className="text-neutral-200 text-sm font-medium">
+              {WEDDING_DETAILS.venueName}
+            </p>
+
+            <p className="text-neutral-400 text-xs leading-relaxed">
+              {WEDDING_DETAILS.venueAddress}
+            </p>
+          </div>
+
+          {/* Location Buttons */}
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <a
               href={WEDDING_DETAILS.googleMapsUrl}
@@ -197,7 +218,8 @@ export default function InvitationDetails() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-amber-500/50 text-amber-300 text-xs hover:bg-amber-500/10 transition-colors"
             >
-              <span>📍</span> خرائط جوجل
+              <span>📍</span>
+              خرائط جوجل
             </a>
 
             <a
@@ -206,7 +228,8 @@ export default function InvitationDetails() {
               rel="noopener noreferrer"
               className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-amber-500/50 text-amber-300 text-xs hover:bg-amber-500/10 transition-colors"
             >
-              <span>🚗</span> طلب Uber للموقع
+              <span>🚗</span>
+              طلب Uber للموقع
             </a>
           </div>
         </div>
@@ -233,6 +256,7 @@ export default function InvitationDetails() {
             <label className="text-xs text-amber-400 font-medium">
               إلى من ترغب بإرسال التهنئة؟
             </label>
+
             <div className="grid grid-cols-2 gap-3">
               <button
                 type="button"
@@ -260,6 +284,7 @@ export default function InvitationDetails() {
             </div>
           </div>
 
+          {/* Guest Name */}
           <input
             type="text"
             placeholder="اسمك الكريم..."
@@ -269,6 +294,7 @@ export default function InvitationDetails() {
             required
           />
 
+          {/* Wish Message */}
           <textarea
             rows={4}
             placeholder="اكتب مباركتك الطيبة..."
@@ -278,6 +304,7 @@ export default function InvitationDetails() {
             required
           />
 
+          {/* Submit */}
           <button
             type="submit"
             disabled={isSubmitting}
