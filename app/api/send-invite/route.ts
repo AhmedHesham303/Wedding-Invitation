@@ -38,6 +38,12 @@ export async function POST(request: Request) {
         ? WEDDING_DETAILS.brideName
         : WEDDING_DETAILS.groomName;
 
+    // Get current date/time formatted in Arabic
+    const sentAt = new Date().toLocaleString("ar-EG", {
+      dateStyle: "medium",
+      timeStyle: "short",
+    });
+
     // Styled WhatsApp Message utilizing native markdown formatting & borders
     const messageBody =
       `━━━━━ 🌟 *تهنئة جديدة* 🌟 ━━━━━\n\n` +
@@ -46,19 +52,26 @@ export async function POST(request: Request) {
       `👤 *المرسل:* *${guestName || "محب للخير"}*\n\n` +
       `💬 *نص التهنئة:*\n` +
       `> _"${wishMessage}"_\n\n` +
-      `📅 *التاريخ:* ${WEDDING_DETAILS.displayDateArabic}\n` +
+      `📅 *تاريخ المناسبة:* ${WEDDING_DETAILS.displayDateArabic}\n` +
+      `⏰ *تاريخ الإرسال:* ${sentAt}\n` +
       `━━━━━━━━━━━━━━━━━━━━`;
 
-    // Optionally include a public URL for an animated GIF or celebratory image
-    const mediaUrl = [
-      "https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbnZudXdmM2NvdTh0dnZwbXN3MXB5NHZ5NmRsaGprOGxwaThydms4ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26tOZ42Mg6pbTUPHW/giphy.gif",
-    ];
+    // Construct public URL
+    const host = request.headers.get("host") || "";
+    const protocol = host.includes("localhost") ? "http" : "https";
+
+    // Twilio CANNOT fetch localhost URLs.
+    // Replace extension if your image is .png or .jpg (Note: convert .webp to .png first)
+    const isLocalhost =
+      host.includes("localhost") || host.includes("127.0.0.1");
+    const imageUrl = `${protocol}://${host}/masjed.png`;
 
     const message = await client.messages.create({
       body: messageBody,
       from: twilioPhone,
       to: formattedTo,
-      mediaUrl: isWhatsApp ? mediaUrl : undefined, // Attach animation if using WhatsApp
+      // Only attach mediaUrl if running on a live public domain (like Vercel) or via ngrok
+      mediaUrl: isWhatsApp && !isLocalhost ? [imageUrl] : undefined,
     });
 
     return NextResponse.json({ success: true, sid: message.sid });
