@@ -56,22 +56,11 @@ export async function POST(request: Request) {
       `⏰ *تاريخ الإرسال:* ${sentAt}\n` +
       `━━━━━━━━━━━━━━━━━━━━`;
 
-    // Construct public URL
-    const host = request.headers.get("host") || "";
-    const protocol = host.includes("localhost") ? "http" : "https";
-
-    // Twilio CANNOT fetch localhost URLs.
-    // Replace extension if your image is .png or .jpg (Note: convert .webp to .png first)
-    const isLocalhost =
-      host.includes("localhost") || host.includes("127.0.0.1");
-    const imageUrl = `${protocol}://${host}/masjed.png`;
-
+    // Send text-only payload to avoid Twilio 63021 / 21620 media content errors
     const message = await client.messages.create({
       body: messageBody,
       from: twilioPhone,
       to: formattedTo,
-      // Only attach mediaUrl if running on a live public domain (like Vercel) or via ngrok
-      mediaUrl: isWhatsApp && !isLocalhost ? [imageUrl] : undefined,
     });
 
     return NextResponse.json({ success: true, sid: message.sid });
