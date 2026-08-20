@@ -16,7 +16,7 @@ const cairo = Cairo({
 });
 
 export const metadata = {
-  title: "دعوة زفاف | محمد وسهيلة",
+  title: "دعوة زفاف | أحمد و أريج",
   description: "يسرنا دعوتكم لحضور حفل زفافنا. شاركونا فرحتنا!",
   openGraph: {
     title: "دعوة زفاف | محمد وسهيلة",
