@@ -21,7 +21,7 @@ export const WEDDING_DETAILS = {
   // Contact & RSVP
   phoneNumbers: {
     groom: "+201025743812", // Replace with Groom's WhatsApp number
-    bride: "+201225479784", // Replace with Bride's WhatsApp number
+    bride: "+201553152337", // Replace with Bride's WhatsApp number
   },
   // Media
   audioFilePath: "/wedding.mp3",
