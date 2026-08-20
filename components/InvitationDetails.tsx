@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { WEDDING_DETAILS } from "@/app/_config/constants";
 
 export default function InvitationDetails() {
@@ -12,6 +12,10 @@ export default function InvitationDetails() {
   const [wishMessage, setWishMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [statusMessage, setStatusMessage] = useState("");
+
+  // Modals state for Ride & Transit
+  const [showRideModal, setShowRideModal] = useState(false);
+  const [showTransitModal, setShowTransitModal] = useState(false);
 
   const handleSubmitWish = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -210,7 +214,7 @@ export default function InvitationDetails() {
             </p>
           </div>
 
-          {/* Location Buttons */}
+          {/* Location Action Buttons */}
           <div className="flex flex-wrap justify-center gap-3 pt-2">
             <a
               href={WEDDING_DETAILS.googleMapsUrl}
@@ -222,18 +226,106 @@ export default function InvitationDetails() {
               خرائط جوجل
             </a>
 
-            <a
-              href={WEDDING_DETAILS.uberLocationUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-amber-500/50 text-amber-300 text-xs hover:bg-amber-500/10 transition-colors"
+            <button
+              type="button"
+              onClick={() => setShowRideModal(true)}
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-amber-500/50 text-amber-300 text-xs hover:bg-amber-500/10 transition-colors cursor-pointer"
             >
               <span>🚗</span>
-              طلب Uber للموقع
-            </a>
+              اطلب توصيلة
+            </button>
           </div>
         </div>
       </motion.div>
+
+      {/* Ride Applications Modal */}
+      <AnimatePresence>
+        {showRideModal && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-neutral-900 border border-amber-500/30 rounded-2xl p-6 w-full max-w-sm text-center relative shadow-2xl space-y-4"
+            >
+              <button
+                onClick={() => setShowRideModal(false)}
+                className="absolute top-4 left-4 text-amber-400 hover:text-amber-200 text-sm font-bold"
+              >
+                ✕
+              </button>
+
+              <h3 className="text-xl font-serif text-amber-300">
+                اختر خدمة التوصيل
+              </h3>
+
+              <div className="grid grid-cols-2 gap-3 pt-2">
+                {WEDDING_DETAILS.rideServices.map((app) => (
+                  <a
+                    key={app.name}
+                    href={app.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`flex items-center justify-center py-3 px-4 rounded-xl border bg-neutral-950 text-amber-200 text-xs font-semibold transition-all ${app.color}`}
+                  >
+                    {app.name} ↗
+                  </a>
+                ))}
+              </div>
+
+              <button
+                onClick={() => {
+                  setShowRideModal(false);
+                  setShowTransitModal(true);
+                }}
+                className="w-full py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-medium hover:bg-amber-500/20 transition-all mt-2"
+              >
+                🚌 الذهاب بالمواصلات العامة
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
+      {/* Transit Modal */}
+      <AnimatePresence>
+        {showTransitModal && (
+          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+            <motion.div
+              initial={{ scale: 0.9, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.9, opacity: 0 }}
+              className="bg-neutral-900 border border-amber-500/30 rounded-2xl p-6 w-full max-w-md relative shadow-2xl text-right space-y-4"
+            >
+              <button
+                onClick={() => setShowTransitModal(false)}
+                className="absolute top-4 left-4 text-amber-400 hover:text-amber-200 text-sm font-bold"
+              >
+                ✕
+              </button>
+
+              <h3 className="text-lg font-serif text-amber-300">
+                {WEDDING_DETAILS.publicTransit.title}
+              </h3>
+
+              <div className="text-xs text-neutral-300 space-y-3 leading-relaxed bg-neutral-950 p-4 rounded-xl border border-amber-500/10">
+                <p>
+                  <strong className="text-amber-400">🚇 المترو: </strong>
+                  {WEDDING_DETAILS.publicTransit.metro}
+                </p>
+                <p>
+                  <strong className="text-amber-400">🚌 الأتوبيسات: </strong>
+                  {WEDDING_DETAILS.publicTransit.bus}
+                </p>
+                <p>
+                  <strong className="text-amber-400">📍 علامة مميزة: </strong>
+                  {WEDDING_DETAILS.publicTransit.landmark}
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
 
       {/* 3. Wishes Card */}
       <motion.div

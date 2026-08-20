@@ -48,7 +48,7 @@ export default function AudioPlayer({ autoPlayTrigger }: AudioPlayerProps) {
         <Music
           className={`w-4 h-4 ${isPlaying ? "animate-spin text-amber-400" : "text-neutral-400"}`}
         />
-        <span>{isPlaying ? "إيقاف الموسيقى" : "تشغيل الموسيقى"}</span>
+        <span>{isPlaying ? "إيقاف الصوت" : "تشغيل الصوت"}</span>
       </button>
     </>
   );

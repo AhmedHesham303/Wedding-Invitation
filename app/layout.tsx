@@ -16,13 +16,16 @@ const cairo = Cairo({
 });
 
 export const metadata = {
-  title: "دعوة زفاف | أحمد و أريج",
+  title: "عقد قران | أحمد و أريچ",
   description: "يسرنا دعوتكم لحضور حفل زفافنا. شاركونا فرحتنا!",
   openGraph: {
-    title: "دعوة زفاف | محمد وسهيلة",
-    description: "يسرنا دعوتكم لحضور حفل زفافنا. شاركونا فرحتنا!",
+    title: "عقد قران | أحمد و أريچ",
+    description: "يسرنا دعوتكم لحضور عقد قراننا ، شاركونا فرحتنا !",
     locale: "ar_EG",
     type: "website",
+  },
+  icons: {
+    icon: "/masjed.webp",
   },
 };
 
