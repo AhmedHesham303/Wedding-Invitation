@@ -193,7 +193,7 @@ export default function InvitationDetails() {
           {/* Masjid Image */}
           <div className="overflow-hidden rounded-xl border border-amber-500/20">
             <img
-              src="/public/masjed.webp"
+              src="/masjed.webp"
               alt={WEDDING_DETAILS.venueName}
               className="w-full h-56 md:h-64 object-cover"
             />
