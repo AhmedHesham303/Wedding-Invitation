@@ -167,13 +167,11 @@ export default function InvitationDetails() {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="w-full max-w-xl bg-neutral-950/90 border border-amber-500/20 rounded-2xl p-6 md:p-10 text-center shadow-2xl space-y-6"
       >
-        <span className="text-amber-500 tracking-[0.25em] text-xs font-sans uppercase">
+        {/* <span className="text-amber-500 tracking-[0.25em] text-xs font-sans uppercase">
           EVENT DETAILS
-        </span>
+        </span> */}
 
-        <h2 className="text-3xl font-serif text-amber-300">
-          تفاصيل الحفل والمكان
-        </h2>
+        <h2 className="text-3xl font-serif text-amber-300">التفاصيل</h2>
 
         {/* Date Box */}
         <div className="bg-neutral-900/60 border border-amber-500/20 rounded-xl p-5 text-center space-y-1">
@@ -334,9 +332,9 @@ export default function InvitationDetails() {
         transition={{ duration: 0.8, delay: 0.4 }}
         className="w-full max-w-xl bg-neutral-950/90 border border-amber-500/20 rounded-2xl p-6 md:p-10 text-center shadow-2xl space-y-6"
       >
-        <span className="text-amber-500 tracking-[0.25em] text-xs font-sans uppercase">
+        {/* <span className="text-amber-500 tracking-[0.25em] text-xs font-sans uppercase">
           WISHES
-        </span>
+        </span> */}
 
         <h2 className="text-2xl font-serif text-amber-300">
           اترك مباركة للعروسين
