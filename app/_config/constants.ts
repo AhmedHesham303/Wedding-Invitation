@@ -1,8 +1,8 @@
 export const WEDDING_DETAILS = {
   // Couple Names
   groomName: "أحمد",
-  brideName: "كريمة الشيخ عبد الححميد الديب",
-  coupleNames: "أحمد و كريمة الشيخ عبد الحميد الديب",
+  brideName: "أريچ",
+  coupleNames: "أحمد و أريچ",
 
   // Date & Time
   weddingDateISO: "2026-09-11T05:30:00",
