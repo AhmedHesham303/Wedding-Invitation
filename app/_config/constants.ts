@@ -1,8 +1,8 @@
 export const WEDDING_DETAILS = {
   // Couple Names
   groomName: "أحمد",
-  brideName: "أريچ",
-  coupleNames: "أحمد و أريچ",
+  brideName: "كريمة الشيخ عبد الححميد الديب",
+  coupleNames: "أحمد و كريمة الشيخ عبد الحميد الديب",
 
   // Date & Time
   weddingDateISO: "2026-09-11T05:30:00",
@@ -21,22 +21,26 @@ export const WEDDING_DETAILS = {
   rideServices: [
     {
       name: "Uber",
-      url: "https://m.uber.com/ul/?action=setPickup&pickup=my_location",
+      appUrl: "uber://",
+      webUrl: "https://m.uber.com/ul/?action=setPickup&pickup=my_location",
       color: "hover:bg-black hover:text-white border-neutral-700",
     },
     {
       name: "Careem",
-      url: "https://careem.me",
+      appUrl: "careem://",
+      webUrl: "https://careem.me",
       color: "hover:bg-emerald-600 hover:text-white border-emerald-500/30",
     },
     {
       name: "DiDi",
-      url: "https://didi-global.com",
+      appUrl: "didi://",
+      webUrl: "https://didi-global.com",
       color: "hover:bg-orange-500 hover:text-white border-orange-500/30",
     },
     {
       name: "inDrive",
-      url: "https://indrive.com",
+      appUrl: "indrive://",
+      webUrl: "https://indrive.com",
       color: "hover:bg-lime-500 hover:text-black border-lime-500/30",
     },
   ],

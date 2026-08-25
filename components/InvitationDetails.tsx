@@ -91,6 +91,29 @@ export default function InvitationDetails() {
     return () => clearInterval(timer);
   }, [targetDate]);
 
+  // Detect mobile / tablet
+  const isMobileDevice = () => {
+    return /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  };
+
+  // Open ride application on mobile,
+  // website on laptop / PC
+  const openRideService = (appUrl: string, webUrl: string) => {
+    if (!isMobileDevice()) {
+      // Laptop / PC
+      window.open(webUrl, "_blank", "noopener,noreferrer");
+      return;
+    }
+
+    // Mobile / Tablet
+    window.location.href = appUrl;
+
+    // Fallback to website if the app is not installed
+    setTimeout(() => {
+      window.location.href = webUrl;
+    }, 1500);
+  };
+
   return (
     <div className="min-h-screen bg-black text-white px-4 py-12 flex flex-col items-center gap-8 dir-rtl">
       {/* 1. Main Invitation Card */}
@@ -167,10 +190,6 @@ export default function InvitationDetails() {
         transition={{ duration: 0.8, delay: 0.2 }}
         className="w-full max-w-xl bg-neutral-950/90 border border-amber-500/20 rounded-2xl p-6 md:p-10 text-center shadow-2xl space-y-6"
       >
-        {/* <span className="text-amber-500 tracking-[0.25em] text-xs font-sans uppercase">
-          EVENT DETAILS
-        </span> */}
-
         <h2 className="text-3xl font-serif text-amber-300">التفاصيل</h2>
 
         {/* Date Box */}
@@ -259,15 +278,14 @@ export default function InvitationDetails() {
 
               <div className="grid grid-cols-2 gap-3 pt-2">
                 {WEDDING_DETAILS.rideServices.map((app) => (
-                  <a
+                  <button
                     key={app.name}
-                    href={app.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={`flex items-center justify-center py-3 px-4 rounded-xl border bg-neutral-950 text-amber-200 text-xs font-semibold transition-all ${app.color}`}
+                    type="button"
+                    onClick={() => openRideService(app.appUrl, app.webUrl)}
+                    className={`flex items-center justify-center py-3 px-4 rounded-xl border bg-neutral-950 text-amber-200 text-xs font-semibold transition-all cursor-pointer ${app.color}`}
                   >
                     {app.name} ↗
-                  </a>
+                  </button>
                 ))}
               </div>
 
@@ -311,10 +329,12 @@ export default function InvitationDetails() {
                   <strong className="text-amber-400">🚇 المترو: </strong>
                   {WEDDING_DETAILS.publicTransit.metro}
                 </p>
+
                 <p>
                   <strong className="text-amber-400">🚌 الأتوبيسات: </strong>
                   {WEDDING_DETAILS.publicTransit.bus}
                 </p>
+
                 <p>
                   <strong className="text-amber-400">📍 علامة مميزة: </strong>
                   {WEDDING_DETAILS.publicTransit.landmark}
@@ -332,10 +352,6 @@ export default function InvitationDetails() {
         transition={{ duration: 0.8, delay: 0.4 }}
         className="w-full max-w-xl bg-neutral-950/90 border border-amber-500/20 rounded-2xl p-6 md:p-10 text-center shadow-2xl space-y-6"
       >
-        {/* <span className="text-amber-500 tracking-[0.25em] text-xs font-sans uppercase">
-          WISHES
-        </span> */}
-
         <h2 className="text-2xl font-serif text-amber-300">
           اترك مباركة للعروسين
         </h2>
