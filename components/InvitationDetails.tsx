@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { ChevronDown } from "lucide-react";
 import { WEDDING_DETAILS } from "@/app/_config/constants";
 
 export default function InvitationDetails() {
@@ -125,7 +126,7 @@ export default function InvitationDetails() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="w-full max-w-xl bg-white/90 backdrop-blur-md border border-amber-200/80 rounded-3xl p-6 md:p-10 text-center shadow-[0_15px_35px_rgba(212,175,55,0.08)] space-y-6 relative z-10"
+        className="w-full max-w-xl bg-white/90 backdrop-blur-md border border-amber-200/80 rounded-3xl p-6 md:p-10 text-center shadow-[0_15px_35px_rgba(212,175,55,0.08)] space-y-6 relative z-10 flex flex-col items-center"
       >
         <span className="inline-block px-4 py-1 rounded-full bg-amber-100/80 border border-amber-200 text-amber-900 tracking-[0.2em] text-xs font-semibold uppercase shadow-xs">
           دعوة عقد قران
@@ -164,7 +165,7 @@ export default function InvitationDetails() {
         </p>
 
         {/* Countdown Timer */}
-        <div className="grid grid-cols-4 gap-2 md:gap-4 pt-4 max-w-md mx-auto">
+        <div className="grid grid-cols-4 gap-2 md:gap-4 pt-4 max-w-md mx-auto w-full">
           {[
             { label: "يوم", value: timeLeft.days },
             { label: "ساعة", value: timeLeft.hours },
@@ -185,6 +186,18 @@ export default function InvitationDetails() {
             </div>
           ))}
         </div>
+
+        {/* Animated Scroll Down Indicator */}
+        <motion.div
+          animate={{ y: [0, 8, 0] }}
+          transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+          className="pt-6 flex flex-col items-center gap-1 text-amber-800 pointer-events-none"
+        >
+          <span className="text-xs font-semibold tracking-wide">
+            تصفح للأسفل
+          </span>
+          <ChevronDown className="w-5 h-5 text-amber-600" />
+        </motion.div>
       </motion.div>
 
       {/* 2. Event Details Card */}
