@@ -393,7 +393,7 @@ export default function InvitationDetails() {
                     : "bg-stone-50 border-stone-200 text-stone-500 hover:border-amber-200"
                 }`}
               >
-                👰 العروس ({WEDDING_DETAILS.brideName})
+                👰 العروسة ({WEDDING_DETAILS.brideName})
               </button>
             </div>
           </div>
