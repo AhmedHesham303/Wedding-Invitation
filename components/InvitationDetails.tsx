@@ -115,46 +115,50 @@ export default function InvitationDetails() {
   };
 
   return (
-    <div className="min-h-screen bg-black text-white px-4 py-12 flex flex-col items-center gap-8 dir-rtl">
+    <div className="min-h-screen bg-stone-50 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px] text-stone-800 px-4 py-12 flex flex-col items-center gap-8 dir-rtl relative overflow-hidden">
+      {/* Background Soft Glow Effects */}
+      <div className="absolute top-10 left-1/2 -translate-x-1/2 w-96 h-96 bg-amber-100/50 blur-3xl rounded-full pointer-events-none" />
+      <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-[30rem] h-[30rem] bg-rose-100/40 blur-3xl rounded-full pointer-events-none" />
+
       {/* 1. Main Invitation Card */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className="w-full max-w-xl bg-neutral-950/90 border border-amber-500/20 rounded-2xl p-6 md:p-10 text-center shadow-2xl space-y-6"
+        className="w-full max-w-xl bg-white/90 backdrop-blur-md border border-amber-200/80 rounded-3xl p-6 md:p-10 text-center shadow-[0_15px_35px_rgba(212,175,55,0.08)] space-y-6 relative z-10"
       >
-        <span className="text-amber-500 tracking-[0.25em] text-xs font-sans uppercase">
+        <span className="inline-block px-4 py-1 rounded-full bg-amber-100/80 border border-amber-200 text-amber-900 tracking-[0.2em] text-xs font-semibold uppercase shadow-xs">
           دعوة عقد قران
         </span>
 
-        <p className="text-amber-100 font-serif text-sm md:text-base leading-relaxed px-2">
+        <p className="text-amber-900 font-serif text-sm md:text-base leading-relaxed px-2 font-medium">
           {WEDDING_DETAILS.quranVerse}
         </p>
 
-        <div className="flex items-center justify-center gap-3 text-amber-500/60 my-2">
-          <span className="h-[1px] w-12 bg-amber-500/30" />
+        <div className="flex items-center justify-center gap-3 text-amber-400/80 my-2">
+          <span className="h-[1px] w-12 bg-amber-200" />
           <span>◆</span>
-          <span className="h-[1px] w-12 bg-amber-500/30" />
+          <span className="h-[1px] w-12 bg-amber-200" />
         </div>
 
-        <p className="text-neutral-300 text-sm leading-relaxed max-w-md mx-auto">
+        <p className="text-stone-600 text-sm leading-relaxed max-w-md mx-auto">
           {WEDDING_DETAILS.invitationMessage}
         </p>
 
         {/* Bride & Groom Names */}
-        <h1 className="text-4xl md:text-5xl font-serif text-amber-300 py-2 tracking-wide">
-          {WEDDING_DETAILS.groomName}{" "}
-          <span className="text-amber-500 text-3xl mx-2 font-sans">&</span>{" "}
-          {WEDDING_DETAILS.brideName}
+        <h1 className="text-3xl md:text-5xl font-serif text-stone-800 py-2 tracking-wide">
+          <span>{WEDDING_DETAILS.groomName}</span>
+          <span className="text-amber-600 font-sans mx-3">&</span>
+          <span>{WEDDING_DETAILS.brideName}</span>
         </h1>
 
-        <div className="flex items-center justify-center gap-3 text-amber-500/60 my-2">
-          <span className="h-[1px] w-12 bg-amber-500/30" />
+        <div className="flex items-center justify-center gap-3 text-amber-400/80 my-2">
+          <span className="h-[1px] w-12 bg-amber-200" />
           <span>◆</span>
-          <span className="h-[1px] w-12 bg-amber-500/30" />
+          <span className="h-[1px] w-12 bg-amber-200" />
         </div>
 
-        <p className="text-amber-400 font-medium text-sm md:text-base">
+        <p className="text-amber-800 font-semibold text-sm md:text-base bg-amber-50/80 inline-block px-5 py-2 rounded-full border border-amber-200/60">
           {WEDDING_DETAILS.displayDateArabic} •{" "}
           {WEDDING_DETAILS.displayTimeArabic}
         </p>
@@ -169,13 +173,13 @@ export default function InvitationDetails() {
           ].map((item, idx) => (
             <div
               key={idx}
-              className="bg-neutral-900/80 border border-amber-500/30 rounded-xl p-3 flex flex-col items-center justify-center"
+              className="bg-amber-50/50 border border-amber-200/70 rounded-2xl p-3 flex flex-col items-center justify-center shadow-xs"
             >
-              <span className="text-xl md:text-2xl font-semibold text-amber-400 font-mono">
+              <span className="text-xl md:text-2xl font-bold text-amber-800 font-mono">
                 {String(item.value).padStart(2, "0")}
               </span>
 
-              <span className="text-xs text-neutral-400 mt-1">
+              <span className="text-xs text-stone-500 mt-1 font-medium">
                 {item.label}
               </span>
             </div>
@@ -188,31 +192,35 @@ export default function InvitationDetails() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.2 }}
-        className="w-full max-w-xl bg-neutral-950/90 border border-amber-500/20 rounded-2xl p-6 md:p-10 text-center shadow-2xl space-y-6"
+        className="w-full max-w-xl bg-white/90 backdrop-blur-md border border-amber-200/80 rounded-3xl p-6 md:p-10 text-center shadow-[0_15px_35px_rgba(212,175,55,0.08)] space-y-6 relative z-10"
       >
-        <h2 className="text-3xl font-serif text-amber-300">التفاصيل</h2>
+        <h2 className="text-3xl font-serif text-stone-800 font-semibold">
+          التفاصيل
+        </h2>
 
         {/* Date Box */}
-        <div className="bg-neutral-900/60 border border-amber-500/20 rounded-xl p-5 text-center space-y-1">
-          <p className="text-lg font-medium text-amber-300">
+        <div className="bg-amber-50/50 border border-amber-200/60 rounded-2xl p-5 text-center space-y-1">
+          <p className="text-base md:text-lg font-semibold text-amber-900">
             📅 الموعد والتوقيت
           </p>
 
-          <p className="text-neutral-300 text-sm">
+          <p className="text-stone-700 text-sm font-medium">
             {WEDDING_DETAILS.displayDateArabic}
           </p>
 
-          <p className="text-neutral-400 text-xs">
+          <p className="text-stone-500 text-xs">
             {WEDDING_DETAILS.displayTimeArabic}
           </p>
         </div>
 
         {/* Venue Box */}
-        <div className="bg-neutral-900/60 border border-amber-500/20 rounded-xl p-5 text-center space-y-4">
-          <p className="text-lg font-medium text-amber-300">🕌 مكان الاحتفال</p>
+        <div className="bg-amber-50/50 border border-amber-200/60 rounded-2xl p-5 text-center space-y-4">
+          <p className="text-base md:text-lg font-semibold text-amber-900">
+            🕌 مكان الاحتفال
+          </p>
 
           {/* Masjid Image */}
-          <div className="overflow-hidden rounded-xl border border-amber-500/20">
+          <div className="overflow-hidden rounded-2xl border border-amber-200 shadow-xs">
             <img
               src="/masjed.webp"
               alt={WEDDING_DETAILS.venueName}
@@ -221,12 +229,12 @@ export default function InvitationDetails() {
           </div>
 
           {/* Location */}
-          <div className="space-y-2">
-            <p className="text-neutral-200 text-sm font-medium">
+          <div className="space-y-1">
+            <p className="text-stone-800 text-sm font-bold">
               {WEDDING_DETAILS.venueName}
             </p>
 
-            <p className="text-neutral-400 text-xs leading-relaxed">
+            <p className="text-stone-500 text-xs leading-relaxed">
               {WEDDING_DETAILS.venueAddress}
             </p>
           </div>
@@ -237,7 +245,7 @@ export default function InvitationDetails() {
               href={WEDDING_DETAILS.googleMapsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-amber-500/50 text-amber-300 text-xs hover:bg-amber-500/10 transition-colors"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white border border-amber-300 text-amber-900 text-xs font-semibold shadow-xs hover:bg-amber-100/50 transition-colors"
             >
               <span>📍</span>
               خرائط جوجل
@@ -246,7 +254,7 @@ export default function InvitationDetails() {
             <button
               type="button"
               onClick={() => setShowRideModal(true)}
-              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full border border-amber-500/50 text-amber-300 text-xs hover:bg-amber-500/10 transition-colors cursor-pointer"
+              className="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-full bg-white border border-amber-300 text-amber-900 text-xs font-semibold shadow-xs hover:bg-amber-100/50 transition-colors cursor-pointer"
             >
               <span>🚗</span>
               اطلب توصيلة
@@ -258,21 +266,21 @@ export default function InvitationDetails() {
       {/* Ride Applications Modal */}
       <AnimatePresence>
         {showRideModal && (
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 bg-stone-900/40 backdrop-blur-md z-50 flex items-center justify-center p-4">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-neutral-900 border border-amber-500/30 rounded-2xl p-6 w-full max-w-sm text-center relative shadow-2xl space-y-4"
+              className="bg-white border border-amber-200 rounded-3xl p-6 w-full max-w-sm text-center relative shadow-2xl space-y-4"
             >
               <button
                 onClick={() => setShowRideModal(false)}
-                className="absolute top-4 left-4 text-amber-400 hover:text-amber-200 text-sm font-bold"
+                className="absolute top-4 left-4 text-stone-400 hover:text-stone-600 text-sm font-bold"
               >
                 ✕
               </button>
 
-              <h3 className="text-xl font-serif text-amber-300">
+              <h3 className="text-xl font-serif text-stone-800 font-semibold">
                 اختر خدمة التوصيل
               </h3>
 
@@ -282,7 +290,7 @@ export default function InvitationDetails() {
                     key={app.name}
                     type="button"
                     onClick={() => openRideService(app.appUrl, app.webUrl)}
-                    className={`flex items-center justify-center py-3 px-4 rounded-xl border bg-neutral-950 text-amber-200 text-xs font-semibold transition-all cursor-pointer ${app.color}`}
+                    className="flex items-center justify-center py-3 px-4 rounded-xl border border-amber-200 bg-amber-50/40 text-amber-900 hover:bg-amber-100/60 text-xs font-bold transition-all cursor-pointer shadow-xs"
                   >
                     {app.name} ↗
                   </button>
@@ -294,7 +302,7 @@ export default function InvitationDetails() {
                   setShowRideModal(false);
                   setShowTransitModal(true);
                 }}
-                className="w-full py-2.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs font-medium hover:bg-amber-500/20 transition-all mt-2"
+                className="w-full py-2.5 rounded-xl bg-stone-100 border border-stone-200 text-stone-700 text-xs font-semibold hover:bg-stone-200/60 transition-all mt-2 cursor-pointer"
               >
                 🚌 الذهاب بالمواصلات العامة
               </button>
@@ -306,37 +314,37 @@ export default function InvitationDetails() {
       {/* Transit Modal */}
       <AnimatePresence>
         {showTransitModal && (
-          <div className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <div className="fixed inset-0 bg-stone-900/40 backdrop-blur-md z-50 flex items-center justify-center p-4">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-neutral-900 border border-amber-500/30 rounded-2xl p-6 w-full max-w-md relative shadow-2xl text-right space-y-4"
+              className="bg-white border border-amber-200 rounded-3xl p-6 w-full max-w-md relative shadow-2xl text-right space-y-4"
             >
               <button
                 onClick={() => setShowTransitModal(false)}
-                className="absolute top-4 left-4 text-amber-400 hover:text-amber-200 text-sm font-bold"
+                className="absolute top-4 left-4 text-stone-400 hover:text-stone-600 text-sm font-bold"
               >
                 ✕
               </button>
 
-              <h3 className="text-lg font-serif text-amber-300">
+              <h3 className="text-lg font-serif text-stone-800 font-semibold">
                 {WEDDING_DETAILS.publicTransit.title}
               </h3>
 
-              <div className="text-xs text-neutral-300 space-y-3 leading-relaxed bg-neutral-950 p-4 rounded-xl border border-amber-500/10">
+              <div className="text-xs text-stone-700 space-y-3 leading-relaxed bg-amber-50/40 p-4 rounded-2xl border border-amber-200/60">
                 <p>
-                  <strong className="text-amber-400">🚇 المترو: </strong>
+                  <strong className="text-amber-800">🚇 المترو: </strong>
                   {WEDDING_DETAILS.publicTransit.metro}
                 </p>
 
                 <p>
-                  <strong className="text-amber-400">🚌 الأتوبيسات: </strong>
+                  <strong className="text-amber-800">🚌 الأتوبيسات: </strong>
                   {WEDDING_DETAILS.publicTransit.bus}
                 </p>
 
                 <p>
-                  <strong className="text-amber-400">📍 علامة مميزة: </strong>
+                  <strong className="text-amber-800">📍 علامة مميزة: </strong>
                   {WEDDING_DETAILS.publicTransit.landmark}
                 </p>
               </div>
@@ -350,16 +358,16 @@ export default function InvitationDetails() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, delay: 0.4 }}
-        className="w-full max-w-xl bg-neutral-950/90 border border-amber-500/20 rounded-2xl p-6 md:p-10 text-center shadow-2xl space-y-6"
+        className="w-full max-w-xl bg-white/90 backdrop-blur-md border border-amber-200/80 rounded-3xl p-6 md:p-10 text-center shadow-[0_15px_35px_rgba(212,175,55,0.08)] space-y-6 relative z-10"
       >
-        <h2 className="text-2xl font-serif text-amber-300">
+        <h2 className="text-2xl font-serif text-stone-800 font-semibold">
           اترك مباركة للعروسين
         </h2>
 
         <form className="space-y-4 text-right" onSubmit={handleSubmitWish}>
           {/* Recipient Selection Toggle */}
           <div className="flex flex-col gap-2">
-            <label className="text-xs text-amber-400 font-medium">
+            <label className="text-xs text-amber-900 font-semibold">
               إلى من ترغب بإرسال التهنئة؟
             </label>
 
@@ -367,10 +375,10 @@ export default function InvitationDetails() {
               <button
                 type="button"
                 onClick={() => setRecipientType("groom")}
-                className={`py-2.5 px-4 rounded-xl text-xs font-semibold transition-all border ${
+                className={`py-2.5 px-4 rounded-2xl text-xs font-semibold transition-all border cursor-pointer ${
                   recipientType === "groom"
-                    ? "bg-amber-500/20 border-amber-500 text-amber-300 shadow-md"
-                    : "bg-neutral-900 border-amber-500/10 text-neutral-400 hover:border-amber-500/30"
+                    ? "bg-amber-100 border-amber-400 text-amber-950 shadow-xs"
+                    : "bg-stone-50 border-stone-200 text-stone-500 hover:border-amber-200"
                 }`}
               >
                 🤵 العريس ({WEDDING_DETAILS.groomName})
@@ -379,10 +387,10 @@ export default function InvitationDetails() {
               <button
                 type="button"
                 onClick={() => setRecipientType("bride")}
-                className={`py-2.5 px-4 rounded-xl text-xs font-semibold transition-all border ${
+                className={`py-2.5 px-4 rounded-2xl text-xs font-semibold transition-all border cursor-pointer ${
                   recipientType === "bride"
-                    ? "bg-amber-500/20 border-amber-500 text-amber-300 shadow-md"
-                    : "bg-neutral-900 border-amber-500/10 text-neutral-400 hover:border-amber-500/30"
+                    ? "bg-amber-100 border-amber-400 text-amber-950 shadow-xs"
+                    : "bg-stone-50 border-stone-200 text-stone-500 hover:border-amber-200"
                 }`}
               >
                 👰 العروس ({WEDDING_DETAILS.brideName})
@@ -396,7 +404,7 @@ export default function InvitationDetails() {
             placeholder="اسمك الكريم..."
             value={guestName}
             onChange={(e) => setGuestName(e.target.value)}
-            className="w-full bg-neutral-900 border border-amber-500/20 rounded-xl px-4 py-3 text-sm text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:border-amber-500/60"
+            className="w-full bg-stone-50 border border-amber-200/80 rounded-2xl px-4 py-3 text-sm text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-amber-400 focus:bg-white transition-all"
             required
           />
 
@@ -406,7 +414,7 @@ export default function InvitationDetails() {
             placeholder="اكتب مباركتك الطيبة..."
             value={wishMessage}
             onChange={(e) => setWishMessage(e.target.value)}
-            className="w-full bg-neutral-900 border border-amber-500/20 rounded-xl px-4 py-3 text-sm text-neutral-200 placeholder:text-neutral-500 focus:outline-none focus:border-amber-500/60 resize-none"
+            className="w-full bg-stone-50 border border-amber-200/80 rounded-2xl px-4 py-3 text-sm text-stone-800 placeholder:text-stone-400 focus:outline-none focus:border-amber-400 focus:bg-white transition-all resize-none"
             required
           />
 
@@ -414,13 +422,13 @@ export default function InvitationDetails() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full py-3 bg-amber-400 text-neutral-950 font-semibold rounded-full hover:bg-amber-300 transition-colors shadow-lg text-sm cursor-pointer disabled:opacity-50"
+            className="w-full py-3 bg-gradient-to-r from-amber-400 via-amber-500 to-amber-600 text-white font-bold rounded-full hover:brightness-105 transition-all shadow-md text-sm cursor-pointer disabled:opacity-50"
           >
             {isSubmitting ? "جاري الإرسال..." : "إرسال التهنئة 💫"}
           </button>
 
           {statusMessage && (
-            <p className="text-xs text-center text-amber-300 mt-2">
+            <p className="text-xs text-center text-amber-900 font-medium mt-2">
               {statusMessage}
             </p>
           )}
