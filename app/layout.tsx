@@ -17,7 +17,7 @@ const cairo = Cairo({
 
 export const metadata = {
   title: "عقد قران | أحمد و أريچ",
-  description: "يسرنا دعوتكم لحضور حفل زفافنا. شاركونا فرحتنا!",
+  description: "يسرنا دعوتكم لحضور عقد قراننا ، شاركونا فرحتنا !",
   openGraph: {
     title: "عقد قران | أحمد و أريچ",
     description: "يسرنا دعوتكم لحضور عقد قراننا ، شاركونا فرحتنا !",
