@@ -7,7 +7,7 @@ import { WEDDING_DETAILS } from "@/app/_config/constants";
 
 export default function InvitationDetails() {
   const [recipientType, setRecipientType] = useState<"groom" | "bride">(
-    "groom",
+    "bride",
   );
   const [guestName, setGuestName] = useState("");
   const [wishMessage, setWishMessage] = useState("");
